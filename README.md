@@ -151,7 +151,7 @@ Linear Regression R² Score: 0.1471733218820559
 📫 [LinkedIn](https://www.linkedin.com/in/surajsingh-cse) 
 
 
-🌐 [GitHub]([(https://github.com/SurajSingh-Cse/Airbnb-Price-Prediction))
+🌐 [GitHub]-([(https://github.com/SurajSingh-Cse/Airbnb-Price-Prediction)
 
 ---
 
