@@ -55,6 +55,53 @@ This project is a machine learning-based analysis and prediction model that esti
 ## 📈 Model Building
 
 ```python
+#import libraries:-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+# load dataset:-
+df = pd.read_csv("AB_NYC_2019.csv")
+df.head()
+
+#basic info and missing value:-
+df.info()   # Display basic information about the DataFrame
+
+df.describe() # Display summary statistics of the DataFrame
+
+df.isnull().sum()  # Check for missing values in each column
+
+
+df = df.dropna()  # Drop rows with missing values
+
+X = df.drop(['price', 'id', 'name', 'host_name', 'last_review', 'neighbourhood'], axis=1)
+y = df['price']   # Features and target variable
+
+X = pd.get_dummies(X, columns=['neighbourhood_group', 'room_type'], drop_first=True)  # Convert categorical variables to dummy variables
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X_train, y_train)    # Train the model
+
+
+from sklearn.metrics import mean_squared_error, r2_score
+y_pred = model.predict(X_test)
+rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+r2 = r2_score(y_test, y_pred)
+
+print("Linear Regression RMSE:", rmse)  # Root Mean Squared Error       
+print("Linear Regression R² Score:", r2)  # R² Score
+
+
+
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 
@@ -64,6 +111,12 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
 r2 = r2_score(y_test, y_pred)
+```
+## Output:
+
+```
+Linear Regression RMSE: 168.90248652881712
+Linear Regression R² Score: 0.1471733218820559
 ```
 
 ✅ Model evaluation is done using **RMSE** and **R² Score**.
