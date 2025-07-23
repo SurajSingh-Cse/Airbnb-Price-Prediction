@@ -76,9 +76,10 @@ df.describe() # Display summary statistics of the DataFrame
 
 df.isnull().sum()  # Check for missing values in each column
 
-
+#drop missing raw and and missing value:-
 df = df.dropna()  # Drop rows with missing values
 
+#  Define X and y properly (Drop all non-numeric/text columns from X:-
 X = df.drop(['price', 'id', 'name', 'host_name', 'last_review', 'neighbourhood'], axis=1)
 y = df['price']   # Features and target variable
 
@@ -87,11 +88,12 @@ X = pd.get_dummies(X, columns=['neighbourhood_group', 'room_type'], drop_first=T
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+#  Train Linear Regression:-
 from sklearn.linear_model import LinearRegression
 model = LinearRegression()
 model.fit(X_train, y_train)    # Train the model
 
-
+#  Predict and Evaluate:-
 from sklearn.metrics import mean_squared_error, r2_score
 y_pred = model.predict(X_test)
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
@@ -112,6 +114,7 @@ y_pred = model.predict(X_test)
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
 r2 = r2_score(y_test, y_pred)
 ```
+
 ## Output:
 
 ```
